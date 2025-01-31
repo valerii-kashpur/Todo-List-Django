@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2 class="d-flex justify-content-between align-items-center">TODO list
+    <a
+        href="{% url 'todo:task-create' %}"
+        class="btn btn-primary link-to-page">
+      Add task
+    </a></h2>
+  {% if task_list %}
+    <ul class="list-group list-group-flush">
+      {% for task in task_list %}
+        <li class="list-group-item"></li>
+        <h3 class="pt-3">{{ task.content }}
+          {% if task.is_done %}
+            <span style="color: green">
+            Done
+          </span>
+          {% else %}
+            <span style="color: red">
+            Not done
+          </span>
+          {% endif %}
+
+          {% if task.is_done %}
+            <a href="{% url "todo:toggle-task-status" pk=task.id %}"
+               class="btn btn-danger link-to-page"
+               style="float: right;">
+              Undo
+            </a>
+          {% else %}
+            <a href="{% url "todo:toggle-task-status" pk=task.id %}"
+               class="btn btn-success link-to-page"
+               style="float: right;">
+              Complete
+            </a>
+          {% endif %}
+
+        </h3>
+        <p class="fw-bold" style="font-weight: bold !important;">Created
+          at: {{ task.created_at }}</p>
+        <p class="text-secondary" class="fw-bold"
+           style="font-weight: bold !important;">
+          Tags: {{ task.get_tag_names }}
+          <a href="{% url "todo:task-update" pk=task.id %}">
+            Update
+          </a>
+          <a href="{% url "todo:task-delete" pk=task.id %}">
+            Delete
+          </a>
+        </p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No tasks found.</p>
+  {% endif %}
+{% endblock %}
