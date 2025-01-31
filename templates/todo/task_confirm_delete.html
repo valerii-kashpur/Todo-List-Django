@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Delete task?</h2>
+  <p>Task: "{{ task.content }}"</p>
+  <p>Status: {{ task.is_done|yesno:"Done,Not done" }}</p>
+  <p>Created: {{ task.created_at }}</p>
+  <p>Tags: {{ task.get_tag_names }}</p>
+  <form action="" method="post">
+    {% csrf_token %}
+
+    <input type="submit" value="Yes, delete" class="btn btn-danger">
+    <a href="{% url 'todo:task-list' %}" class="btn btn-secondary">Cancel</a>
+  </form>
+{% endblock %}
