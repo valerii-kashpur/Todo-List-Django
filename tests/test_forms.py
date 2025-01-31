@@ -14,8 +14,7 @@ class TaskFormTest(TestCase):
     def test_task_form_valid(self):
         form_data = {
             "content": "Finish the Django project",
-            "deadline": (datetime.now() + timedelta(days=1)).strftime(
-                "%Y-%m-%dT%H:%M"),
+            "deadline": (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%dT%H:%M"),
             "is_done": False,
             "tags": [self.tag1.id, self.tag2.id],
         }
@@ -25,8 +24,7 @@ class TaskFormTest(TestCase):
     def test_task_form_invalid_without_content(self):
         form_data = {
             "content": "",
-            "deadline": (datetime.now() + timedelta(days=1)).strftime(
-                "%Y-%m-%dT%H:%M"),
+            "deadline": (datetime.now() + timedelta(days=1)).strftime("%Y-%m-%dT%H:%M"),
             "is_done": False,
             "tags": [self.tag1.id, self.tag2.id],
         }
@@ -44,7 +42,7 @@ class TaskFormTest(TestCase):
         form = TaskForm(data=form_data)
         self.assertFalse(form.is_valid())
         self.assertIn("deadline", form.errors)
-        
+
 
 class TagFormTest(TestCase):
     def test_tag_form_valid(self):

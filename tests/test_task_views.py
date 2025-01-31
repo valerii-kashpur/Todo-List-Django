@@ -28,7 +28,7 @@ class TaskListViewTest(TestCase):
 
         expected_order = sorted(
             [self.task1, self.task2, self.task3],
-            key=lambda t: (t.is_done, -t.created_at.timestamp())
+            key=lambda t: (t.is_done, -t.created_at.timestamp()),
         )
 
         self.assertEqual(tasks, expected_order)

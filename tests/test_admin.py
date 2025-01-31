@@ -26,7 +26,12 @@ class AdminSiteTest(TestCase):
     def test_task_admin_list_display(self):
         admin = TaskAdmin(self.task, site)
         expected_fields = (
-        "content", "created_at", "deadline", "is_done", "display_tags")
+            "content",
+            "created_at",
+            "deadline",
+            "is_done",
+            "display_tags",
+        )
         self.assertEqual(admin.list_display, expected_fields)
 
     def test_task_admin_search_fields(self):
